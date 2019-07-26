@@ -44,16 +44,14 @@ jobs:
       - run:
           name: Setup Scratch Org
           command: |
-	     echo $ORG_EMAIL
-	     sfdx force:auth:jwt:grant --clientid $HUB_CONSUMER_KEY --jwtkeyfile assets/server.key --username $HUB_SFDX_USER --setdefaultdevhubusername -a hub
-	     sfdx force --help
-	     
-	     sfdx force:org:create adminEmail=$ORG_EMAIL edition=Developer -a circle_build_$CIRCLE_BUILD_NUM --wait 4
-	     sfdx force:user:password:generate --targetusername circle_build_$CIRCLE_BUILD_NUM
-	     sfdx force:source:push -u circle_build_$CIRCLE_BUILD_NUM
-	     sfdx force:org:display -u circle_build_$CIRCLE_BUILD_NUM
-	     
-	     export SCRATCH_DETAILS="$(eval sfdx force:org:display -u newscratch)"
-	     echo $SCRATCH_DETAILS
-	     
-	     sfdx force:data:record:update -u thakur.jassi@cunning-wolf-m5h01c.com -s Scratch_Org_Request__c -i $REQUEST_ID -v "Status__c='Completed' Scratch_Org_Details__c='$SCRATCH_DETAILS'"
+            echo $ORG_EMAIL
+            sfdx force:auth:jwt:grant --clientid $HUB_CONSUMER_KEY --jwtkeyfile assets/server.key --username $HUB_SFDX_USER --setdefaultdevhubusername -a hub
+            sfdx force --help
+	    
+            sfdx force:org:create adminEmail=$ORG_EMAIL edition=Developer -a circle_build_$CIRCLE_BUILD_NUM --wait 4
+	    sfdx force:user:password:generate --targetusername circle_build_$CIRCLE_BUILD_NUM
+	    sfdx force:source:push -u circle_build_$CIRCLE_BUILD_NUM
+	    sfdx force:org:display -u circle_build_$CIRCLE_BUILD_NUM
+	    export SCRATCH_DETAILS="$(eval sfdx force:org:display -u newscratch)"
+	    echo $SCRATCH_DETAILS
+            sfdx force:data:record:update -u thakur.jassi@cunning-wolf-m5h01c.com -s Scratch_Org_Request__c -i $REQUEST_ID -v "Status__c='Completed' Scratch_Org_Details__c='$SCRATCH_DETAILS'" 
