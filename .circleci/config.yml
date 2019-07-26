@@ -47,8 +47,7 @@ jobs:
             echo $ORG_EMAIL
             sfdx force:auth:jwt:grant --clientid $HUB_CONSUMER_KEY --jwtkeyfile assets/server.key --username $HUB_SFDX_USER --setdefaultdevhubusername -a hub
             sfdx force --help
-	    
-	    sfdx force:org:create adminEmail=$ORG_EMAIL edition=Developer -a circle_build_$CIRCLE_BUILD_NUM --wait 4
+            sfdx force:org:create adminEmail=$ORG_EMAIL edition=Developer -a circle_build_$CIRCLE_BUILD_NUM --wait 4
             sfdx force:user:password:generate --targetusername circle_build_$CIRCLE_BUILD_NUM
             sfdx force:source:push -u circle_build_$CIRCLE_BUILD_NUM
             sfdx force:org:display -u circle_build_$CIRCLE_BUILD_NUM
