@@ -53,4 +53,4 @@ jobs:
             sfdx force:org:display -u circle_build_$CIRCLE_BUILD_NUM
             export SCRATCH_DETAILS="$(eval sfdx force:org:display -u circle_build_$CIRCLE_BUILD_NUM)"
             echo $SCRATCH_DETAILS
-            sfdx force:data:record:update -u thakur.jassi@cunning-wolf-m5h01c.com -s Scratch_Org_Request__c -i $REQUEST_ID -v "Status__c='Completed' Scratch_Org_Details__c='$SCRATCH_DETAILS'" 
+            sfdx force:data:record:update -u jaswinsingh@deloitte.com.delclidev -s Scratch_Org_Request__c -i $REQUEST_ID -v "Status__c='Completed' Scratch_Org_Details__c='$SCRATCH_DETAILS'" 
